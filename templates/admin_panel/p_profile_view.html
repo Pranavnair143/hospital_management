@@ -1,0 +1,42 @@
+{% extends 'admin_panel/base2.html' %}
+{% load static %}
+
+{% block content %}
+    <div id="page-wrapper" >
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{patient.name}}</h1>
+                </div>
+            </div>
+            <hr />
+            <div class='row'>
+                <div class='col-sm-8'>
+                    <div class='row'>
+                        <div class='col-sm-3'><h3>Date of birth:</h3></div>
+                        <div class='col-sm-9'><h3>{{ patient.dob }}({{patient.age}} years)</h3></div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-3'><h3>Mobile:</h3></div>
+                        <div class='col-sm-9'><h3>{{ patient.mobile }}</h3></div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-3'><h3>Address:</h3></div>
+                        <div class='col-sm-9'><h3>{{ patient.address }}</h3></div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-3'><h3>Adhaar No.:</h3></div>
+                        <div class='col-sm-9'><h3>{{ patient.adhaar_no }}</h3></div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-3'><h3>Email:</h3></div>
+                        <div class='col-sm-9'><h3>{{ patient.user.email }}</h3></div>
+                    </div>
+                </div>
+                <div class='col-sm-4'>
+                    <img src="{% static 'admin/img/find_user.png' %}" class="user-image img-responsive" alt="find_user">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Bootstrap Admin Template : Binary Admin</title><!-- BOOTSTRAP STYLES-->
+  <link href="{% static 'admin/css/bootstrap.css' %}" rel="stylesheet" />
+  <link href="{% static 'admin/css/font-awesome.css' %}" rel="stylesheet" />
+  <link href="{% static 'admin/js/morris/morris-0.4.3.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'admin/css/custom.css' %}" rel="stylesheet" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+  <link href="{% static 'admin/js/dataTables/dataTables.bootstrap.css' %}" rel="stylesheet" />
+</head>
+<body>
+  <div id="wrapper">
+    <nav class="navbar navbar-default navbar-cls-top" role="navigation" style="margin-bottom: 0">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse"><span class="sr-only">Toggle navigation</span></button> <a class="navbar-brand" href="index.html">Admin</a>
+      </div>
+      <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
+        &nbsp; <a href="{% url 'logout' %}" class="btn btn-danger square-btn-adjust">Logout</a>
+      </div>
+    </nav><!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+      <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+          <li class="text-center"><img src="{% static 'admin/img/find_user.png' %}" class="user-image img-responsive" alt="find_user"></li>
+          
+          <li>
+            <a {% if lreqs %}class="active-menu"{% endif %} href="{% url 'a_lreqs' %}">Leave Requests</a>
+          </li>
+          <li>
+            <a {% if pr %}class="active-menu"{% endif %} href="{% url 'a_pr' %}">Patient Records</a>
+          </li>
+          <li>
+            <a {% if sr %}class="active-menu"{% endif %} href="{% url 'a_sr' %}">Staff Records</a>
+          </li>
+          <li>
+            <a {% if cc %}class="active-menu"{% endif %} href="{% url 'a_cc' %}">Post Circular</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+  </div>
+  <script src="{% static 'admin/js/jquery-1.10.2.js' %}"></script>
+  <script src="{% static 'admin/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'admin/js/jquery.metisMenu.js' %}"></script>
+  <script src="{% static 'admin/js/morris/raphael-2.1.0.min.js' %}"></script>
+  <script src="{% static 'admin/js/morris/morris.js' %}"></script>
+  
+  <script src="{% static 'admin/js/dataTables/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'admin/js/dataTables/dataTables.bootstrap.js' %}"></script>
+  <!--<script>
+    var header =document.getElementById("main-menu");
+    
+    var links=header.getElementsByClassName("alink");
+    console.log(links);
+    for (var i=0;i<links.length;i++){
+      links[i].addEventListener("click",function(){
+        console.log("HEYYYYY");
+        var current=document.getElementByClassName("active-menu");
+        console.log(current);
+        current[0].className=current[0].className.replace(" active-menu","");
+        this.className+=" active-menu";
+        console.log(this.className);
+      });
+    }
+  </script>-->
+  <script>
+  $(document).ready(function () {
+      $('#dataTables-example').dataTable();
+    });
+  </script>
+  <script src="{% static 'admin/js/custom.js' %}"></script>
+</body>
+</html>

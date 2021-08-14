@@ -1,0 +1,63 @@
+{% extends 'admin_panel/base2.html' %}
+{% load static %}
+
+{% block content %}
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-10">
+                     <h2>Staff Records</h2>
+                    </div>
+                    <div class='col-sm-2' style='padding:20px;'>
+                        <a href="{% url 'a_sr_ans' %}" class="btn btn-info">Add new staff</a>
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                 <hr />
+               
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             Advanced Tables
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Doctor Id</th>
+                                            <th>Doctor Name</th>
+                                            <th>Mobile No.</th>
+                                            <th>Is Active</th>
+                                            <th>Profile</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in doctors %}
+                                        <tr class="odd gradeX">
+                                            <td>{{ i.user.id }}</td>
+                                            <td>{{ i.name }}</td>
+                                            <td>{{ i.mobile }}</td>
+                                            <td style='color:red'>
+                                                {% if i.on_leave %}
+                                                    On leave({{ i.on_leave.from_date }} to {{i.on_leave.to_date}})
+                                                {% else %}
+                                                    <span class="glyphicon glyphicon-ok" style='color:green'></span>
+                                                {% endif %}
+                                            </td>
+                                            <td><a href="{% url 'dr_profile' i.user.id %}" class="btn btn-info">View profile</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+        </div>
+{% endblock %}

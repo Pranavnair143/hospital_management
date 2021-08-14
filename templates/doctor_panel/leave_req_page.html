@@ -1,0 +1,83 @@
+{% extends 'doctor_panel/base2.html' %}
+{% load static %}
+
+{% block content %}
+    <div id="page-wrapper" >
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-9">
+                    <h2 style='color:blue;'>Leave Requests</h2>
+                    <h5>{{ doctor.is_available }}</h5>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'd_al' %}" class="btn btn-primary">Apply for leave</a>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="well well-sm">
+                        <h2 style='color:blue;'>{{ doctor.p_leave }}</h2>
+                        <h4>Privilege leave left</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="well well-sm">
+                        <h2 style='color:blue;'>{{ doctor.med_leave }}</h2>
+                        <h4>Medical leave left</h4>
+                        </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="well well-sm">
+                        <h2 style='color:blue;'>{{ doctor.cs_leave }}</h2>
+                        <h4>Casual leave left</h4>
+                    </div>
+                </div>
+            </div>
+            {% for i in reqs %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class='row'>
+                        <div class='col-md-9'><h4>{{ i.l_type }}</h4></div>
+                        {% if i.is_pending %}
+                            <div class='col-md-3'><a class="btn btn-danger" href="{% url 'd_lreqs_revert' i.id %}" role="button"><i class="fa fa-pencil"></i> Revert</a></div>
+                        {% endif %}
+                        </div>
+                        
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-6">
+                                    <p>From: {{ i.from_date }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>To: {{ i.to_date }}</p>
+                                </div>
+                        </div>
+                        <div class="col-md-6"><h3>{{ i.total_days }} days</h3></div>
+                        </div>
+                        
+                        <p>{{ i.desc }}</p>
+                    </div>
+                    <div class="panel-footer">
+                        <div class='row'>
+                            <div class='col-md-9'></div>
+                            <div class='col-md-3'>
+                            {% if i.is_pending %}
+                                <h3>Status: <span class="label label-info">Pending</span></h3>
+                            {% else %}
+                                {% if i.is_approved %}
+                                    <h3>Status: <span class="label label-success">Approved</span></h3>
+                                {% else %}
+                                    <h3>Status: <span class="label label-danger">Rejected</span></h3>
+                                {% endif %}
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

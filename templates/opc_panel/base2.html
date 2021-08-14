@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Bootstrap Admin Template : Binary Admin</title>
+  <link href="{% static 'admin/css/bootstrap.css' %}" rel="stylesheet" />
+  <link href="{% static 'admin/css/font-awesome.css' %}" rel="stylesheet" />
+  <link href="{% static 'admin/js/morris/morris-0.4.3.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'admin/css/custom.css' %}" rel="stylesheet" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="{% static 'admin/js/dataTables/dataTables.bootstrap.css' %}" rel="stylesheet" />
+</head>
+<body>
+  <div id="wrapper">
+    <nav class="navbar navbar-default navbar-cls-top" role="navigation" style="margin-bottom: 0">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse"><span class="sr-only">Toggle navigation</span></button> <a style="background-color:blue;" class="navbar-brand" href="index.html">OP Coordinator</a>
+      </div>
+      <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
+        Last access : 30 May 2014 &nbsp; <a style="background-color:blue;" href="{% url 'logout' %}" class="btn btn-danger square-btn-adjust">Logout</a>
+      </div>
+    </nav><!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+      <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+          <li class="text-center"><img src="{% static 'admin/img/find_user.png' %}" class="user-image img-responsive" alt="find_user"></li>
+          <li>
+            <a {% if pt %}id="staff-menu"{% endif %} href="{% url 'opc_pt' %}">Tokens</a>
+          </li>
+          <li>
+            <a {% if pr %}id="staff-menu"{% endif %} href="{% url 'opc_pr' %}">Patient Records</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+  </div>
+    
+  <script src="{% static 'admin/js/jquery-1.10.2.js' %}"></script>
+  <script src="{% static 'admin/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'admin/js/jquery.metisMenu.js' %}"></script>
+  <script src="{% static 'admin/js/morris/raphael-2.1.0.min.js' %}"></script>
+  <script src="{% static 'admin/js/morris/morris.js' %}"></script>
+  <script src="{% static 'admin/js/dataTables/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'admin/js/dataTables/dataTables.bootstrap.js' %}"></script>
+  <script>
+    $(document).ready(function () {
+      $('#dataTables-example').dataTable();
+    });
+  </script>
+  <script src="{% static 'admin/js/custom.js' %}"></script>
+
+</body>
+</html>

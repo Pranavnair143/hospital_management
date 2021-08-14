@@ -1,0 +1,3 @@
+{% for key,value in ts_list %}
+    <option val={{key}}  label={{value}}  id="{{key}}" {% if key in booked_timeslots %}style="color:red;" disabled{% endif %}>{{key}}</option>
+{% endfor %}
